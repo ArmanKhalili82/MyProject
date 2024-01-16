@@ -10,8 +10,8 @@ namespace MyProject.Controllers
         public IActionResult GetAll()
         {
             var db = new ApplicationDbContext();
-            var data = db.infos.OrderBy(x => x.Name).ToList();
-            return View(data);
+            ViewBag.Data = db.infos.OrderBy(x => x.Name).ToList();
+            return View(ViewBag.Data);
         }
 
         [HttpPost]
