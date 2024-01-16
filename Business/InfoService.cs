@@ -23,7 +23,7 @@ public class InfoService : IInfoService
         return data;
     }
 
-    public async Task<Info> GetById(int id)
+    public async Task<List<Info>> GetById(int id)
     {
         var data = await _context.infos.Where(s => s.Id == id).ToListAsync();
         return data;
