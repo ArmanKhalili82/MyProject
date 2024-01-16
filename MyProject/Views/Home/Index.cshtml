@@ -73,6 +73,14 @@
 </div>
 
 <script>
-    
+    const getAll = async () => {
+        const response = await fetch("https://localhost:7241/GetAll");
+        const data = await response.json();
+    }
+
+    const getId = async () => {
+        const response = await fetch(`https://localhost:7241/GetById/${id}`);
+        const data = await response.json();
+    }
 </script>
 
