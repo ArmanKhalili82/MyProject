@@ -1,28 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business;
+using Microsoft.AspNetCore.Mvc;
 using MyProject.Data;
 using MyProject.Models;
 
-namespace MyProject.Controllers
-{
-    public class InfoController : Controller
-    {
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var db = new ApplicationDbContext();
-            ViewBag.Data = db.infos.OrderBy(x => x.Name).ToList();
-            return View(ViewBag.Data);
-        }
+namespace MyProject.Controllers;
 
-        [HttpPost]
-        public IActionResult Add([FromBody] Info model)
-        {
-            var db = new ApplicationDbContext();
-            Random random = new Random();
-            int id = random.Next(3, 100);
-            model.Id = id;
-            db.infos.Add(model);
-            return Ok();
-        }
+public class InfoController : Controller
+{
+    private IInfoService _infoService;
+    public InfoController(IInfoService infoService)
+    {
+        _infoService = infoService;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllAsync()
+    {
+        var data = _infoService.GetAll();
+        return View(data);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var data = _infoService.GetById(id);
+        return View(data);
     }
 }
