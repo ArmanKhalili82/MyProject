@@ -1,3 +1,4 @@
+using Business;
 using Microsoft.EntityFrameworkCore;
 using MyProject.Data;
 
@@ -9,6 +10,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 //builder.Services.AddDbContext < "ApplicationDbContext" > (option =>
 //    option.UseSqlServer(builder.Configuration.GetConnectionString(DefaultConnection)));
+
+builder.Services.AddScoped<IInfoService, InfoService>();
 
 var app = builder.Build();
 

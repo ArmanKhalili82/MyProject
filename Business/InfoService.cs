@@ -1,4 +1,5 @@
-﻿using MyProject.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MyProject.Data;
 using MyProject.Models;
 using System;
 using System.Collections.Generic;
@@ -10,17 +11,17 @@ namespace Business;
 
 public class InfoService : IInfoService
 {
-    public List<Info> GetAll()
+    public async List<Info> GetAll()
     {
         var db = new ApplicationDbContext();
-        var data = db.infos.OrderBy(x => x.Name).ToList();
+        var data = await db.infos.OrderBy(x => x.Name).ToListAsync();
         return data;
     }
 
-    public Info GetById(int id)
+    public async Info GetById(int id)
     {
         var db = new ApplicationDbContext();
-        var data = db.infos.Where(s => s.Id == id).FirstOrDefault();
+        var data = await db.infos.Where(s => s.Id == id).ToListAsync();
         return data;
     }
 }
