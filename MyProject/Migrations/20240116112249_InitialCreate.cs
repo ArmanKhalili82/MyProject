@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace MyProject.Migrations
 {
     /// <inheritdoc />
@@ -21,6 +23,15 @@ namespace MyProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_infos", x => x.Id);
+                });
+
+            migrationBuilder.InsertData(
+                table: "infos",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Reza" },
+                    { 2, "Amir" }
                 });
         }
 

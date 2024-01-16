@@ -11,7 +11,7 @@ using MyProject.Data;
 namespace MyProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240116094745_InitialCreate")]
+    [Migration("20240116112249_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -39,6 +39,18 @@ namespace MyProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("infos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Reza"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Amir"
+                        });
                 });
 #pragma warning restore 612, 618
         }
