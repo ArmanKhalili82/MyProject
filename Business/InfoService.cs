@@ -12,6 +12,11 @@ namespace Business;
 public class InfoService : IInfoService
 {
     private ApplicationDbContext _context;
+    public InfoService(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     public async List<Info> GetAll()
     {
         var data = await _context.infos.OrderBy(x => x.Name).ToListAsync();

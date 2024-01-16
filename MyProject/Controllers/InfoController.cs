@@ -14,14 +14,14 @@ public class InfoController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll(string name)
+    public IActionResult GetAll(string name)
     {
         var data = _infoService.GetAll();
         return View(data);
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetById(int id)
+    public IActionResult GetById(int id)
     {
         var data = _infoService.GetById(id);
         return View(data);
