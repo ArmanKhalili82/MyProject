@@ -6,15 +6,23 @@ namespace MyProject.Controllers
 {
     public class InfoController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
+        [HttpGet]
         public IActionResult GetAll()
         {
             var db = new ApplicationDbContext();
-            var data = db.infos.Where()
+            var data = db.infos.OrderBy(x => x.Name).ToList();
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult Add([FromBody] Info model)
+        {
+            var db = new ApplicationDbContext();
+            Random random = new Random();
+            int id = random.Next(3, 100);
+            model.Id = id;
+            db.infos.Add(model);
+            return Ok();
         }
     }
 }
