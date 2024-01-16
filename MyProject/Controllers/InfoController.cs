@@ -14,7 +14,7 @@ public class InfoController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> GetAll(string name)
     {
         var data = _infoService.GetAll();
         return View(data);
