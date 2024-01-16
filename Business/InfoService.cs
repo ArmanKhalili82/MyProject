@@ -17,13 +17,13 @@ public class InfoService : IInfoService
         _context = context;
     }
 
-    public async List<Info> GetAll()
+    public async Task<List<Info>> GetAll()
     {
         var data = await _context.infos.OrderBy(x => x.Name).ToListAsync();
         return data;
     }
 
-    public async Info GetById(int id)
+    public async Task<Info> GetById(int id)
     {
         var data = await _context.infos.Where(s => s.Id == id).ToListAsync();
         return data;

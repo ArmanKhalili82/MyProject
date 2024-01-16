@@ -9,6 +9,6 @@ namespace Business;
 
 public interface IInfoService
 {
-    List<Info> GetAll();
-    Info GetById(int id);
+    Task<List<Info>> GetAll();
+    Task<Info> GetById(int id);
 }
