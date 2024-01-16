@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Business.Models;
+using Microsoft.EntityFrameworkCore;
 using MyProject.Models;
 
 namespace MyProject.Data;
@@ -23,6 +24,7 @@ public class ApplicationDbContext : DbContext
     //}
 
     public DbSet<Info> infos { get; set; }
+    public DbSet<InfoDetails> details { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -30,13 +32,29 @@ public class ApplicationDbContext : DbContext
             new Info
             {
                 Id = 1,
-                Name = "Reza"
+                Name = "Iran"
             },
 
             new Info
             {
                 Id = 2,
-                Name = "Amir"
+                Name = "France"
+            }
+        );
+
+        modelBuilder.Entity<InfoDetails>().HasData(
+            new InfoDetails
+            {
+                Id = 1,
+                Title = "Tehran",
+                Info = new Info { Id = 1, Name = "Iran"}
+            },
+
+            new InfoDetails
+            {
+                Id = 2,
+                Title = "Paris",
+                Info = new Info { Id = 2, Name = "France"}
             }
         );
     }
