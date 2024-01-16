@@ -11,17 +11,16 @@ namespace Business;
 
 public class InfoService : IInfoService
 {
+    private ApplicationDbContext _context;
     public async List<Info> GetAll()
     {
-        var db = new ApplicationDbContext();
-        var data = await db.infos.OrderBy(x => x.Name).ToListAsync();
+        var data = await _context.infos.OrderBy(x => x.Name).ToListAsync();
         return data;
     }
 
     public async Info GetById(int id)
     {
-        var db = new ApplicationDbContext();
-        var data = await db.infos.Where(s => s.Id == id).ToListAsync();
+        var data = await _context.infos.Where(s => s.Id == id).ToListAsync();
         return data;
     }
 }
